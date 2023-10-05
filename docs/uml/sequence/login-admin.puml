@@ -1,0 +1,12 @@
+@startuml
+actor admin as "Admin"
+admin -> view : Isi username dan Password
+view -> controller : request data admin
+controller -> model : ambil data admin
+model --> controller : return data admin
+controller -> controller : validasi dan \nautentikasi
+controller --> view : gagal login
+view --> admin : tampilkan konten login
+controller --> view : ambil konten berhasil
+view --> admin : tampilkan dashboard
+@enduml
