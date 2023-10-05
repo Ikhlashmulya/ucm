@@ -1,0 +1,12 @@
+@startuml membuat_jadwal
+
+(*) --> "Login"
+--> "Masukkan email dan password" as form
+if "terverifikasi?" then
+    ---> [berhasil] "Masuk ke dashboard admin"
+else
+    --> [gagal] "Tampilkan pesan error"
+    ----> [coba lagi] "form"
+endif
+
+@enduml

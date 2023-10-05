@@ -1,0 +1,57 @@
+@startuml database_ucm
+
+Entity admin {
+    * id <<PK>>
+    ---
+    * email : varchar(100)
+    * nama : varchar(100)
+    * password : varchar(100)
+}
+
+Entity gedung {
+    * id <<PK>>
+    ---
+    * nama_gedung : varchar(100)
+}
+
+Entity ruangan {
+    * id <<PK>>
+    * gedung_id <<FK>>
+    ---
+    * nama_ruangan : varchar(100)
+}
+
+Entity jadwal {
+    * id <<PK>>
+    ---
+    * nama_dosen : varchar(100)
+    * nama_mata_kuliah : varchar(100)
+}
+
+Entity jadwal_ruangan_default {
+    * id <<PK>>
+    * id_jadwal <<FK>>
+    * id_ruangan <<FK>>
+    ---
+    * waktu : timestamps
+    ---
+    unique(id, id_jadwal, id_ruangan)
+}
+
+Entity jadwal_ruangan_custom {
+    * id <<PK>>
+    * id_jadwal <<FK>>
+    * id_ruangan <<FK>>
+    ---
+    * waktu : timestamps
+    ---
+    unique(id, id_jadwal, id_ruangan)
+}
+
+gedung ||--|{ ruangan : "Memiliki"
+jadwal --|{ jadwal_ruangan_default
+ruangan --|{ jadwal_ruangan_default
+jadwal --|{ jadwal_ruangan_custom
+ruangan --|{ jadwal_ruangan_custom
+
+@enduml

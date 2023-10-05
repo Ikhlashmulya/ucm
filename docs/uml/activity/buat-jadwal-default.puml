@@ -1,0 +1,22 @@
+@startuml buat_jadwal
+
+(*) --> Buka dashboard admin
+--> pilih menu buat jadwal
+--> pilih ruangan
+if "jadwal ruangan tersebut sudah dibuat sebelumnya?" then
+    if hapus/pilih ruangan lain? then
+        --> [hapus] hapus jadwal kelas sebelumnya
+        ---> pilih ruangan kelas yang belum dijadwal
+    else
+        ------> [kembali pilih ruangan lain] pilih ruangan
+    endif
+else
+    --> [belum] pilih ruangan kelas yang belum dijadwal
+endif
+--> masukkan nama dosen
+--> masukkan nama mata kuliah
+--> pilih waktu
+--> simpan
+--> (*)
+
+@enduml
