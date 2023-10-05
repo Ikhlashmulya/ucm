@@ -1,0 +1,22 @@
+@startuml
+actor admin as "Admin"
+view --> admin : tampilkan tampilan buat jadwal
+admin -> view : pilih tampilan ruangan
+view -> controller : pilih tampilan ruangan
+controller -> model : ambil data ruangan
+model --> controller : return data ruangan
+controller --> view : ambil konten
+view --> admin : tampilan data ruangan
+admin -> view : hapus jadwal sebelumnya
+view -> controller : request data
+controller -> model : hapus jadwal sebelumnya
+admin -> view : pilih ruangan yang belum dijadwal
+view -> controller : 
+controller --> view : ambil form penjadwalan ruangan
+view --> admin : tampilkan form penjadwalan ruangan
+admin -> view : input data ruangan, dosen dan waktu
+view -> controller : request data
+controller -> model : simpan data ruangan
+controller --> view : tampilan berhasil menyimpan
+view --> admin : tampilkan tampilan berhasil menyimpan
+@enduml
