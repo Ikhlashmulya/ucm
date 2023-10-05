@@ -35,7 +35,7 @@ Entity jadwal_ruangan_default {
     ---
     * waktu : timestamps
     ---
-    unique(id, id_jadwal, id_ruangan)
+    unique(id, id_jadwal, id_ruangan, waktu)
 }
 
 Entity jadwal_ruangan_custom {
@@ -45,7 +45,7 @@ Entity jadwal_ruangan_custom {
     ---
     * waktu : timestamps
     ---
-    unique(id, id_jadwal, id_ruangan)
+    unique(id, id_jadwal, id_ruangan, waktu)
 }
 
 gedung ||--|{ ruangan : "Memiliki"
