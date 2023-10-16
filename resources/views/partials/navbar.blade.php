@@ -22,20 +22,20 @@
                 class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700">
                 <li>
                     <a href="{{ route('home') }}" wire:navigate
-                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                        class="block py-2 pl-3 pr-4 text-white  rounded md:bg-transparent  md:p-0  {{ request()->routeIs('home') ? 'bg-blue-700 md:text-blue-700 md:dark:text-blue-500' : '' }} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                         aria-current="page">Beranda</a>
                 </li>
                 <li>
                     <a href="{{ route('jadwal') }}" wire:navigate
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Jadwal</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:p-0 {{ request()->routeIs('jadwal') ? 'bg-blue-700 md:text-blue-700 md:dark:text-blue-500' : '' }} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Jadwal</a>
                 </li>
                 <li>
                     <a href="{{ route('faq') }}" wire:navigate
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">FAQ</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:p-0 {{ request()->routeIs('faq') ? 'bg-blue-700 md:text-blue-700 md:dark:text-blue-500' : '' }} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">FAQ</a>
                 </li>
                 <li>
                     <a href="{{ route('about') }}" wire:navigate
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tentang</a>
+                        class="block py-2 pl-3 pr-4 text-gray-900 rounded md:bg-transparent hover:bg-gray-100 md:hover:bg-transparent md:p-0 {{ request()->routeIs('about') ? 'bg-blue-700 md:text-blue-700 md:dark:text-blue-500' : '' }} dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tentang</a>
                 </li>
             </ul>
             <button id="theme-toggle" type="button"
