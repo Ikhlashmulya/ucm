@@ -6,6 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>UCM | UNPI CLASS MANAGEMENT</title>
-    @vite('resources/css/app.css')
-    {{-- @livewireStyles --}}
+    @vite(['resources/css/app.css','resources/js/app.js'])
+    @livewireStyles
 </head>
