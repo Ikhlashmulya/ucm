@@ -25,8 +25,9 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('dashboard')
             ->login()
+            ->brandName('UNPI CLASS MANAGEMENT')
             ->colors([
                 'primary' => Color::Amber,
             ])
