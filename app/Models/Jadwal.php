@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\FindAvailableSlots;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,7 +17,7 @@ class Jadwal extends Model
 
     public function prodi(): BelongsTo
     {
-        return $this->belongsTo(Jadwal::class);
+        return $this->belongsTo(Prodi::class);
     }
 
     public function dosen(): BelongsTo
@@ -32,5 +33,10 @@ class Jadwal extends Model
     public function ruangan(): BelongsTo
     {
         return $this->belongsTo(Ruangan::class);
+    }
+
+    public function findSlots($class, $duration, $startTime = null, $endTime = null)
+    {
+        return FindAvailableSlots::findAvailableSlots($class, $duration, $startTime, $endTime);
     }
 }
