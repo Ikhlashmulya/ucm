@@ -6,10 +6,13 @@ use App\Filament\Resources\JamKampusResource\Pages;
 use App\Filament\Resources\JamKampusResource\RelationManagers;
 use App\Models\JamKampus;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -20,7 +23,7 @@ class JamKampusResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 0;
 
     protected static ?string $label = "Jam Kampus";
 
@@ -32,8 +35,12 @@ class JamKampusResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('jam_mulai'),
-                TextInput::make('jam_selesai')
+                TimePicker::make('jam_mulai')
+                    ->label('Jam Mulai')
+                    ->required(),
+                TimePicker::make('jam_selesai')
+                    ->label('Jam Selesai')
+                    ->required(),
             ]);
     }
 
@@ -41,7 +48,10 @@ class JamKampusResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('jam_mulai')
+                    ->label('Jam Mulai'),
+                TextColumn::make('jam_selesai')
+                    ->label('Jam Selesai')
             ])
             ->filters([
                 //

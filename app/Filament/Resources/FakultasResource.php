@@ -6,6 +6,7 @@ use App\Filament\Resources\FakultasResource\Pages;
 use App\Filament\Resources\FakultasResource\RelationManagers;
 use App\Models\Fakultas;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -34,6 +35,7 @@ class FakultasResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama_fakultas')
+                    ->required(),
             ]);
     }
 

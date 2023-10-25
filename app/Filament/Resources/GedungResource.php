@@ -34,6 +34,7 @@ class GedungResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama_gedung')
+                    ->required()
             ]);
     }
 

@@ -6,6 +6,7 @@ use App\Filament\Resources\ProdiResource\Pages;
 use App\Filament\Resources\ProdiResource\RelationManagers;
 use App\Models\Prodi;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -34,8 +35,12 @@ class ProdiResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama_prodi')->required(),
-                TextInput::make('id_fakultas')->label('Fakultas'),
+                TextInput::make('nama_prodi')
+                    ->required(),
+                Select::make('fakultas_id')->label('Fakultas')
+                    ->relationship('fakultas', 'nama_fakultas')
+                    ->required()
+                    ->preload(),
             ]);
     }
 
@@ -44,7 +49,7 @@ class ProdiResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_prodi'),
-                TextColumn::make('id_fakultas')->label('Fakultas'),
+                TextColumn::make('fakultas.nama_fakultas')->label('Fakultas'),
             ])
             ->filters([
                 //

@@ -6,6 +6,7 @@ use App\Filament\Resources\RuanganResource\Pages;
 use App\Filament\Resources\RuanganResource\RelationManagers;
 use App\Models\Ruangan;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,8 +34,11 @@ class RuanganResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama_ruangan'),
-                TextInput::make('id_gedung')->label('Gedung'),
+                TextInput::make('nama_ruangan')
+                    ->required(),
+                Select::make('gedung_id')
+                    ->relationship('gedung', 'nama_gedung')
+                    ->required()
             ]);
     }
 
@@ -42,8 +46,9 @@ class RuanganResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_ruangan'),
-                TextColumn::make('id_gedung')->label('Gedung')
+                TextColumn::make('gedung.nama_gedung')
+                    ->label('Gedung'),
+                TextColumn::make('nama_ruangan')
             ])
             ->filters([
                 //
