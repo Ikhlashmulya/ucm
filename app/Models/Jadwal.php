@@ -35,8 +35,8 @@ class Jadwal extends Model
         return $this->belongsTo(Ruangan::class);
     }
 
-    public function findSlots($class, $duration, $startTime = null, $endTime = null)
-    {
-        return FindAvailableSlots::findAvailableSlots($class, $duration, $startTime, $endTime);
-    }
+    // public function findSlots($class, $duration, $startTime = null, $endTime = null)
+    // {
+    //     return FindAvailableSlots::findAvailableSlots($class, $duration, $startTime, $endTime);
+    // }
 }

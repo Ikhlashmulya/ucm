@@ -1,0 +1,45 @@
+@startuml usecase_ucm
+
+:Umum:
+:Admin:
+left to right direction
+rectangle "Unpi Class Management" {
+(Dashboard) as dash
+(Login) as login
+(Kelola Jadwal) as kelola
+(Melihat Jadwal) as jadwal
+(Buat Jadwal) as buat
+(Data Fakultas) as fakultas
+(Data Prodi) as prodi
+(Data Dosen) as dosen
+(Data Mata Kuliah) as matkul
+(Data Gedung) as gedung
+(Data Ruangan) as ruangan
+(Jam Kampus) as jam
+}
+
+kelola .> buat: <<include>>
+kelola .> login : <<include>>
+jadwal .> kelola : <<include>>
+fakultas <. prodi : <<include>>
+prodi ..> buat : <<include>>
+dosen ..> buat : <<include>>
+matkul ..> buat : <<include>>
+ruangan ..> gedung : <<include>>
+ruangan ..> buat : <<include>>
+jam ..> buat : <<include>>
+
+dash ..> kelola
+dash ..> login
+dash ..> buat
+dash ..> fakultas
+dash ..> prodi
+dash ..> dosen
+dash ..> matkul
+dash ..> gedung
+dash ..> ruangan
+dash ..> jam
+:Umum: <-- jadwal
+
+@enduml
+

@@ -60,7 +60,6 @@ Entity jadwal {
     * id_ruangan <<FK>>
     * id_mata_kuliah <<FK>>
     ---
-    * waktu : timestamps
     * sks : integer
     * semester : integer
     * jam_mulai : time
@@ -69,8 +68,6 @@ Entity jadwal {
     ---
     unique(id, id_dosen, id_prodi, id_mata_kuliah, id_ruangan, waktu, sks, semester, jam_mulai, jam_selesai, hari)
 }
-
-
 
 gedung ||--|{ ruangan : "Memiliki"
 ruangan --|{ jadwal

@@ -21,12 +21,12 @@ class Percobaan
         }
 
         $availableSlots = [];
+        $tempSlotEndTime = date('H:i', $startTime + $duration * 60);
+        $iterate = 0;
 
         while ($startTime + $duration * 60 <= $endTime) {
             $isConflict = Jadwal::where('ruangan_id', $class)
-                // ->where('hari', $day)
                 ->where(function ($query) use ($startTime, $duration) {
-                    // Apakah jam 08:00 lebih kecil dari jam 10:00 AND jam 10:00 lebih besar dari jam 08:00
                     $query->where('jam_mulai', '<', date('H:i', $startTime + $duration * 60))
                         ->where('jam_selesai', '>', date('H:i', $startTime));
                 })
@@ -35,24 +35,17 @@ class Percobaan
                         ->where('jam_selesai', '>', date('H:i', $startTime));
                 })
                 ->exists();
-            // dump($isConflict);
             if (!$isConflict) {
-                $ks = strtotime($endTime) + ($interval * 60);
-                if ($ks == strtotime($startTime) + ($interval * 60)) {
-                    // dump($ks);
-                    // Hitung waktu mulai dan waktu selesai untuk slot yang lebih besar
-                    $slotStartTime = date('H:i', $startTime);
-                    // dd($slotStartTime);
-                    $slotEndTime = date('H:i', $startTime + $duration * 60);
-                    // Tambahkan ke array hasil
+                $slotStartTime = date('H:i', $startTime);
+                $slotEndTime = date('H:i', $startTime + $duration * 60);
+
+                if ($slotStartTime === $tempSlotEndTime) {
                     $availableSlots[] = [
-                        'jam_mulai' => date('H:i', strtotime($slotStartTime) + ($interval * 60)),
-                        'jam_selesai' => date('H:i', strtotime($slotEndTime) + ($interval * 60)),
+                        'jam_mulai' => date('H:i', strtotime($slotStartTime) + (($interval * 60) * $iterate)),
+                        'jam_selesai' => date('H:i', strtotime($slotEndTime) + (($interval * 60) * $iterate)),
                     ];
-                    // dump($availableSlots);
-                    $ks = strtotime($startTime) + ($interval * 60);
-                } else {
-                    continue;
+                    $tempSlotEndTime = $slotEndTime;
+                    $iterate++;
                 }
             }
 

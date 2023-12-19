@@ -4,13 +4,17 @@
 --> pilih menu buat jadwal
 --> pilih Dosen
 --> pilih mata kuiah
---> pilih waktu
---> muncul daftar ruangan untuk rentang jam tersebut
-if "ruangan sudah terisi?" then
-    --> [terisi] disabled nama kelas (tidak bisa dipilih)
-else
-    --> [kosong] pilih kelas
-endif
+--> masukkan jumlah sks
+--> pilih hari
+--> masukkan jam mulai
+--> masukkan jam berakhir
+--> muncul daftar ruangan untuk hari yang dipilih, rentang jam mulai dan jam berakhir
+--> pilih ruangan
+' if "ruangan sudah terisi?" then
+'     --> [terisi] disabled nama kelas (tidak bisa dipilih)
+' else
+'     --> [kosong] pilih kelas
+' endif
 --> simpan
 --> (*)
 

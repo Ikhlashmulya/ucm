@@ -6,12 +6,14 @@ use App\Filament\Resources\JadwalResource\Pages;
 use App\Filament\Resources\JadwalResource\RelationManagers;
 use App\Models\Jadwal;
 use Filament\Forms;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -32,45 +34,45 @@ class JadwalResource extends Resource
 
     protected static ?string $navigationLabel = 'Jadwal';
 
-    protected static ?string $navigationGroup = 'Data';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('dosen_id')
-                    ->relationship('dosen', 'nama')
-                    ->required(),
-                Select::make('prodi_id')
-                    ->relationship('prodi', 'nama_prodi')
-                    ->required(),
-                Select::make('mata_kuliah_id')
-                    ->relationship('mataKuliah', 'nama_matkul')
-                    ->required(),
-                TextInput::make('semester')
-                    ->numeric()
-                    ->required(),
-                TextInput::make('sks')
-                    ->numeric()
-                    ->required(),
-                Select::make('ruangan_id')
-                    ->relationship('ruangan', 'nama_ruangan')
-                    ->required(),
-                Select::make('hari')
-                    ->options([
-                        'Senin' => 'Senin',
-                        'Selasa' => 'Selasa',
-                        'Rabu' => 'Rabu',
-                        'Kamis' => 'Kamis',
-                        'Jumat' => 'Jumat',
-                        'Sabtu' => 'Sabtu'
-                    ]),
-                TimePicker::make('jam_mulai')
-                    ->label('Jam Mulai')
-                    ->required(),
-                TimePicker::make('jam_selesai')
-                    ->label('Jam Selesai')
-                    ->required(),
+                Group::make([
+                    Select::make('dosen_id')
+                        ->relationship('dosen', 'nama')
+                        ->required(),
+                    Select::make('prodi_id')
+                        ->relationship('prodi', 'nama_prodi')
+                        ->required(),
+                    Select::make('mata_kuliah_id')
+                        ->relationship('mataKuliah', 'nama_matkul')
+                        ->required(),
+                    TextInput::make('semester')
+                        ->numeric()
+                        ->required(),
+                    TextInput::make('sks')
+                        ->numeric()
+                        ->required(),
+                    Select::make('ruangan_id')
+                        ->relationship('ruangan', 'nama_ruangan')
+                        ->required(),
+                    Select::make('hari')
+                        ->options([
+                            'Senin' => 'Senin',
+                            'Selasa' => 'Selasa',
+                            'Rabu' => 'Rabu',
+                            'Kamis' => 'Kamis',
+                            'Jumat' => 'Jumat',
+                            'Sabtu' => 'Sabtu'
+                        ]),
+                    TimePicker::make('jam_mulai')
+                        ->label('Jam Mulai')
+                        ->required(),
+                    TimePicker::make('jam_selesai')
+                        ->label('Jam Selesai')
+                        ->required(),
+                ])
             ]);
     }
 
@@ -78,7 +80,15 @@ class JadwalResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('hari'),
+                TextColumn::make('jam_mulai'),
+                TextColumn::make('jam_selesai'),
+                TextColumn::make('mataKuliah.nama_matkul'),
+                TextColumn::make('sks'),
+                TextColumn::make('dosen.nama'),
+                TextColumn::make('semester'),
+                TextColumn::make('prodi.nama_prodi'),
+                TextColumn::make('ruangan.nama_ruangan'),
             ])
             ->filters([
                 //
